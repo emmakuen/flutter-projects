@@ -7,6 +7,8 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = '/register';
+
+  const RegistrationScreen({Key? key}) : super(key: key);
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -16,20 +18,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   bool showSpinner = false;
   late String email;
   late String password;
-  double logoHeight = 200.0;
-
-  double setLogoHeight() {
-    if (MediaQuery.of(context).viewInsets.bottom == 0) {
-      setState(() {
-        logoHeight = 200.0;
-      });
-    } else {
-      setState(() {
-        logoHeight = 50.0;
-      });
-    }
-    return logoHeight;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,19 +26,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: setLogoHeight(),
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48.0,
               ),
               TextField(
@@ -62,7 +52,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 decoration:
                     kInputDecoration.copyWith(hintText: 'Enter your email'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8.0,
               ),
               TextField(
@@ -74,7 +64,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 decoration:
                     kInputDecoration.copyWith(hintText: 'Enter your password'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24.0,
               ),
               RoundedButton(

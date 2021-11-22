@@ -5,9 +5,11 @@ import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(FlashChat());
+void main() => runApp(const FlashChat());
 
 class FlashChat extends StatefulWidget {
+  const FlashChat({Key? key}) : super(key: key);
+
   @override
   State<FlashChat> createState() => _FlashChatState();
 }
@@ -21,20 +23,20 @@ class _FlashChatState extends State<FlashChat> {
       future: _initialization,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return WelcomeScreen();
+          return const WelcomeScreen();
         }
         if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             initialRoute: WelcomeScreen.id,
             routes: {
-              WelcomeScreen.id: (context) => WelcomeScreen(),
-              LoginScreen.id: (context) => LoginScreen(),
-              RegistrationScreen.id: (context) => RegistrationScreen(),
-              ChatScreen.id: (context) => ChatScreen(),
+              WelcomeScreen.id: (context) => const WelcomeScreen(),
+              LoginScreen.id: (context) => const LoginScreen(),
+              RegistrationScreen.id: (context) => const RegistrationScreen(),
+              ChatScreen.id: (context) => const ChatScreen(),
             },
           );
         }
-        return WelcomeScreen();
+        return const WelcomeScreen();
       },
     );
   }
