@@ -11,19 +11,35 @@ class TaskTile extends StatefulWidget {
 }
 
 class _TaskTileState extends State<TaskTile> {
-  bool isDone = false;
+  bool? isSelected = false;
 
   @override
   Widget build(BuildContext context) {
-    return RadioListTile(
-        title: Text(
-          'hi',
-          style: TextStyle(
-              decoration:
-                  isDone ? TextDecoration.lineThrough : TextDecoration.none),
-        ),
-        value: false,
-        groupValue: 'tasks',
-        onChanged: (value) => print(value));
+    return ListTile(
+      title: Text(
+        'This is a task',
+        style: TextStyle(
+            decoration:
+                isSelected! ? TextDecoration.lineThrough : TextDecoration.none),
+      ),
+      trailing: Checkbox(
+        value: isSelected,
+        onChanged: (bool? value) => setState(() => isSelected = value),
+        activeColor: kPrimaryColor,
+      ),
+    );
   }
 }
+
+// RadioListTile(
+// title: Text(
+// 'hi',
+// style: TextStyle(
+// decoration: isSelected
+// ? TextDecoration.lineThrough
+//     : TextDecoration.none),
+// ),
+// value: '',
+// selected: isSelected,
+// groupValue: 'tasks',
+// onChanged: (value) => setState(() => isSelected = !isSelected));
