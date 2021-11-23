@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/constants.dart';
 import 'package:todo_app/components/header.dart';
 import 'package:todo_app/components/tasks_list.dart';
+import 'package:todo_app/components/add_task_popup.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -19,8 +20,17 @@ class _TasksScreenState extends State<TasksScreen> {
       backgroundColor: kPrimaryColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: kPrimaryColor,
-        onPressed: () {},
-        child: Icon(Icons.add),
+        onPressed: () {
+          showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              builder: (context) => SingleChildScrollView(
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTaskPopup())));
+        },
+        child: const Icon(Icons.add),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
