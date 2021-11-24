@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants.dart';
 
-class AddTaskPopup extends StatelessWidget {
-  const AddTaskPopup({Key? key}) : super(key: key);
+class AddTaskScreen extends StatelessWidget {
+  AddTaskScreen({Key? key, required this.setTasks}) : super(key: key);
+  final Function setTasks;
+  late String newTask;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,17 @@ class AddTaskPopup extends StatelessWidget {
               textAlign: TextAlign.center,
               autofocus: true,
               decoration: kTextFieldDecoration,
+              onChanged: (String value) {
+                newTask = value;
+              },
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
               child: Text(kAddButtonText, style: kButtonTextStyle),
-              onPressed: () {},
+              onPressed: () {
+                setTasks(newTask);
+                Navigator.pop(context);
+              },
               style: ElevatedButton.styleFrom(
                 primary: kPrimaryColor,
                 padding: kButtonPadding,

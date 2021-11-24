@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/constants.dart';
 import 'package:todo_app/components/header.dart';
 import 'package:todo_app/components/tasks_list.dart';
-import 'package:todo_app/components/add_task_popup.dart';
+import 'package:todo_app/screens/add_task_screen.dart';
+import 'package:todo_app/models/task.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -12,7 +13,24 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  bool isDone = false;
+  List<Task> tasks = [
+    Task(name: 'Buy cake'),
+    Task(name: 'Buy champagne'),
+    Task(name: 'Buy Steak'),
+  ];
+
+  void setDone(idx, value) {
+    setState(() {
+      tasks[idx].setDone(value);
+    });
+  }
+
+  void setTasks(String taskName) {
+    Task newTask = Task(name: taskName);
+    setState(() {
+      tasks = [...tasks, newTask];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +40,18 @@ class _TasksScreenState extends State<TasksScreen> {
         backgroundColor: kPrimaryColor,
         onPressed: () {
           showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: (context) => SingleChildScrollView(
-                  child: Container(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTaskPopup())));
+            isScrollControlled: true,
+            context: context,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskScreen(
+                  setTasks: setTasks,
+                ),
+              ),
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
@@ -37,9 +60,12 @@ class _TasksScreenState extends State<TasksScreen> {
         children: [
           Container(
             padding: kTasksScreenPadding,
-            child: Header(),
+            child: const Header(),
           ),
-          TasksList(isDone: isDone),
+          TasksList(
+            tasks: tasks,
+            setDone: setDone,
+          ),
         ],
       ),
     );
