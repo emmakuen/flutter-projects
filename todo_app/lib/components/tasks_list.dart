@@ -28,6 +28,7 @@ class TasksList extends StatelessWidget {
                   setSelected: (bool? value) =>
                       tasksData.updateTask(task, value),
                   taskName: task.name,
+                  deleteTapped: () => tasksData.deleteTask(task),
                 );
               },
               itemCount: tasksData.taskCount,

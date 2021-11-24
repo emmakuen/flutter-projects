@@ -6,15 +6,19 @@ class TaskTile extends StatelessWidget {
       {Key? key,
       this.isSelected = false,
       required this.setSelected,
+      required this.deleteTapped,
       required this.taskName})
       : super(key: key);
   final bool? isSelected;
   final String taskName;
   final Function setSelected;
+  final Function deleteTapped;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      enabled: true,
+      onLongPress: () => deleteTapped(),
       title: Text(
         taskName,
         style: TextStyle(

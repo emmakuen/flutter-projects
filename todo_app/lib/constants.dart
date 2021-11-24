@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color kPrimaryColor = Colors.lightBlueAccent;
+Color kPrimaryColor = const Color(0xffE06A6A);
 Color kSecondaryColor = Colors.white;
 Color kModalTopColor = const Color(0xff757575);
 String kAppName = 'Todo App';
