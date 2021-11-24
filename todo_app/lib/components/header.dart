@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/constants.dart';
+import 'package:todo_app/models/tasks.dart';
 
 class Header extends StatelessWidget {
   const Header({Key? key}) : super(key: key);
@@ -16,7 +18,8 @@ class Header extends StatelessWidget {
         ),
         SizedBox(height: 10.0),
         Text(kAppName, style: kTitleStyle),
-        Text('12 tasks', style: kTasksTotalStyle),
+        Text('${Provider.of<Tasks>(context).taskCount} Tasks',
+            style: kTasksTotalStyle),
       ],
     );
   }

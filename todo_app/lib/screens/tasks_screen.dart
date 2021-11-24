@@ -3,34 +3,13 @@ import 'package:todo_app/constants.dart';
 import 'package:todo_app/components/header.dart';
 import 'package:todo_app/components/tasks_list.dart';
 import 'package:todo_app/screens/add_task_screen.dart';
-import 'package:todo_app/models/task.dart';
 
-class TasksScreen extends StatefulWidget {
+class TasksScreen extends StatelessWidget {
   const TasksScreen({Key? key}) : super(key: key);
 
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
+  void setDone(idx, value) {}
 
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy cake'),
-    Task(name: 'Buy champagne'),
-    Task(name: 'Buy Steak'),
-  ];
-
-  void setDone(idx, value) {
-    setState(() {
-      tasks[idx].setDone(value);
-    });
-  }
-
-  void setTasks(String taskName) {
-    Task newTask = Task(name: taskName);
-    setState(() {
-      tasks = [...tasks, newTask];
-    });
-  }
+  void setTasks(String taskName) {}
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +25,7 @@ class _TasksScreenState extends State<TasksScreen> {
               child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskScreen(
-                  setTasks: setTasks,
-                ),
+                child: AddTaskScreen(),
               ),
             ),
           );
@@ -63,7 +40,6 @@ class _TasksScreenState extends State<TasksScreen> {
             child: const Header(),
           ),
           TasksList(
-            tasks: tasks,
             setDone: setDone,
           ),
         ],

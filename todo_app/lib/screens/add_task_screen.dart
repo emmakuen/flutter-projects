@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/models/tasks.dart';
+import 'package:todo_app/models/task.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({Key? key, required this.setTasks}) : super(key: key);
-  final Function setTasks;
+  AddTaskScreen({
+    Key? key,
+  }) : super(key: key);
   late String newTask;
 
   @override
@@ -34,7 +38,7 @@ class AddTaskScreen extends StatelessWidget {
             ElevatedButton(
               child: Text(kAddButtonText, style: kButtonTextStyle),
               onPressed: () {
-                setTasks(newTask);
+                context.read<Tasks>().addTask(newTask);
                 Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
