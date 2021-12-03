@@ -9,3 +9,5 @@ const TextStyle kLabelTextStyle = TextStyle(
   fontWeight: FontWeight.w700,
   fontFamily: 'Palatino',
 );
+
+const TextStyle kDetailLabelTextStyle = TextStyle(fontSize: 18);
