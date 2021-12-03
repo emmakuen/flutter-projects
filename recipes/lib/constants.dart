@@ -11,3 +11,6 @@ const TextStyle kLabelTextStyle = TextStyle(
 );
 
 const TextStyle kDetailLabelTextStyle = TextStyle(fontSize: 18);
+
+// ------------ PADDINGS ----------------- //
+const EdgeInsets kDetailIngredientListPadding = EdgeInsets.all(7.0);

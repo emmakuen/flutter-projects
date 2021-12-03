@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/recipe.dart';
+import 'package:recipes/models/recipe.dart';
 import 'package:recipes/constants.dart';
 
 class RecipeDetail extends StatefulWidget {
@@ -35,7 +35,19 @@ class _RecipeDetailState extends State<RecipeDetail> {
               widget.recipe.label,
               style: kDetailLabelTextStyle,
             ),
-            // TODO: Add Expanded
+            Expanded(
+              child: ListView.builder(
+                padding: kDetailIngredientListPadding,
+                itemCount: widget.recipe.ingredients.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final ingredient = widget.recipe.ingredients[index];
+                  // TODO: Add ingredient.quantity
+                  return Text(
+                    '${ingredient.quantity} ${ingredient.measure} ${ingredient.name}',
+                  );
+                },
+              ),
+            ),
             // TODO: Add Slider() here
           ],
         ),

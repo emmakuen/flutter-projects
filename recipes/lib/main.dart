@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'recipe.dart';
+import 'models/recipe.dart';
 import 'constants.dart';
 import 'package:recipes/screens/homepage.dart';
 

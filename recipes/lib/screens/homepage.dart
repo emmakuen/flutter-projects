@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/constants.dart';
-import 'package:recipes/recipe.dart';
+import 'package:recipes/models/recipe.dart';
 import 'package:recipes/screens/recipe_detail.dart';
 
 class HomePage extends StatefulWidget {
