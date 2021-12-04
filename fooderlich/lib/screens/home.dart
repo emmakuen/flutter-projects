@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlich/constants.dart';
-import 'package:fooderlich/components/card1.dart';
-import 'package:fooderlich/components/card2.dart';
+import 'package:fooderlich/components/featured_card.dart';
+import 'package:fooderlich/components/recipes_card.dart';
+import 'package:fooderlich/components/explore_card.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,10 +17,7 @@ class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     const Card1(),
     const Card2(),
-    // TODO: Replace with Card3
-    Container(
-      color: Colors.blue,
-    ),
+    const ExploreCard(),
   ];
 
   void _onItemTapped(int index) {
@@ -45,18 +43,19 @@ class _HomeState extends State<Home> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: 'Card',
+            label: 'Featured',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: 'Card2',
+            label: 'Recipes',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.card_giftcard),
-            label: 'Card3',
+            label: 'Explore',
           ),
         ],
       ),
+      // TODO: Add bottom navigation bar
     );
   }
 }
