@@ -47,6 +47,14 @@ class GroceryTile extends StatelessWidget {
       throw Exception('This importance type does not exist');
     }
   }
-// TODO: Add buildDate()
+
+  Widget buildDate() {
+    final dateFormatter = DateFormat('MMMM dd h:mm a');
+    final dateString = dateFormatter.format(item.date);
+    return Text(
+      dateString,
+      style: TextStyle(decoration: textDecoration),
+    );
+  }
 // TODO: Add buildCheckbox()
 }
