@@ -56,5 +56,11 @@ class GroceryTile extends StatelessWidget {
       style: TextStyle(decoration: textDecoration),
     );
   }
-// TODO: Add buildCheckbox()
+
+  Widget buildCheckbox() {
+    return Checkbox(
+      value: item.isComplete,
+      onChanged: onComplete,
+    );
+  }
 }
