@@ -67,11 +67,28 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: const Icon(Icons.check),
-            onPressed: () {
-              // TODO 24: Add callback handler
-            },
-          )
+              icon: const Icon(Icons.check),
+              onPressed: () {
+                final groceryItem = GroceryItem(
+                  id: widget.originalItem?.id ?? const Uuid().v1(),
+                  name: _nameController.text,
+                  importance: _importance,
+                  color: _currentColor,
+                  quantity: _currentSliderValue,
+                  date: DateTime(
+                    _dueDate.year,
+                    _dueDate.month,
+                    _dueDate.day,
+                    _timeOfDay.hour,
+                    _timeOfDay.minute,
+                  ),
+                );
+                if (widget.isUpdating) {
+                  widget.onUpdate(groceryItem);
+                } else {
+                  widget.onCreate(groceryItem);
+                }
+              })
         ],
         elevation: 0.0,
         title: Text(
