@@ -25,7 +25,7 @@ class AppRouter extends RouterDelegate
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      // TODO: Add onPopPage
+      onPopPage: _handlePopPage,
       pages: [
         // TODO: Add SplashScreen
         // TODO: Add LoginScreen
@@ -39,7 +39,16 @@ class AppRouter extends RouterDelegate
     );
   }
 
-  // TODO: Add _handlePopPage
+  bool _handlePopPage(Route<dynamic> route, result) {
+    if (!route.didPop(result)) {
+      return false;
+    }
+    // TODO: Handle Onboarding and splash
+    // TODO: Handle state when user closes grocery item screen
+    // TODO: Handle state when user closes profile screen
+    // TODO: Handle state when user closes WebView screen
+    return true;
+  }
 
   @override
   Future<void> setNewRoutePath(configuration) async => null;
