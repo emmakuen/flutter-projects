@@ -21,7 +21,13 @@ class AppRouter extends RouterDelegate
     profileManager.addListener(notifyListeners);
   }
 
-  // TODO: Dispose listeners
+  @override
+  void dispose() {
+    appStateManager.removeListener(notifyListeners);
+    groceryManager.removeListener(notifyListeners);
+    profileManager.removeListener(notifyListeners);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
