@@ -16,7 +16,9 @@ class AppRouter extends RouterDelegate
     required this.groceryManager,
     required this.profileManager,
   }) : navigatorKey = GlobalKey<NavigatorState>() {
-    // TODO: Add listeners
+    appStateManager.addListener(notifyListeners);
+    groceryManager.addListener(notifyListeners);
+    profileManager.addListener(notifyListeners);
   }
 
   // TODO: Dispose listeners
