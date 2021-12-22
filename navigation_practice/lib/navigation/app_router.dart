@@ -50,16 +50,17 @@ class AppRouter extends RouterDelegate
           }),
         if (groceryManager.selectedIndex != -1)
           GroceryItemScreen.page(
-              item: groceryManager.selectedGroceryItem,
-              index: groceryManager.selectedIndex,
-              onUpdate: (item, index) {
-                groceryManager.updateItem(item, index);
-              },
-              onCreate: (_) {
-                // No Create
-              })
-
-        // TODO: Add Profile Screen
+            item: groceryManager.selectedGroceryItem,
+            index: groceryManager.selectedIndex,
+            onUpdate: (item, index) {
+              groceryManager.updateItem(item, index);
+            },
+            onCreate: (_) {
+              // No Create
+            },
+          ),
+        if (profileManager.didSelectUser)
+          ProfileScreen.page(profileManager.getUser),
         // TODO: Add WebView Screen
       ],
     );
@@ -75,7 +76,9 @@ class AppRouter extends RouterDelegate
     if (route.settings.name == FooderlichPages.groceryItemDetails) {
       groceryManager.groceryItemTapped(-1);
     }
-    // TODO: Handle state when user closes profile screen
+    if (route.settings.name == FooderlichPages.profilePath) {
+      profileManager.tapOnProfile(false);
+    }
     // TODO: Handle state when user closes WebView screen
     return true;
   }

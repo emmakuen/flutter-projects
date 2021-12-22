@@ -37,7 +37,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Wrap Consumer for AppStateManager
     return Consumer<AppStateManager>(
         builder: (context, appStateManager, child) {
       return Scaffold(
@@ -88,7 +87,8 @@ class _HomeState extends State<Home> {
           ),
         ),
         onTap: () {
-          // TODO: home -> profile
+          Provider.of<ProfileManager>(context, listen: false)
+              .tapOnProfile(true);
         },
       ),
     );
